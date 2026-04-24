@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Email Summarizer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Email Summarizer</h1>
+            <p class="subtitle">AI-Powered Insights</p>
+        </header>
+
+        <div class="input-section">
+            <textarea id="inputText" placeholder="Paste your email content here..."></textarea>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="lengthSlider">Summary Length</label>
+                <div class="slider-container">
+                    <span>Short</span>
+                    <input type="range" id="lengthSlider" min="0" max="2" step="1" value="1">
+                    <span>Long</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Format</label>
+                <div class="toggle-group">
+                    <button id="btnParagraph" class="toggle-btn active" data-value="paragraph">Paragraph</button>
+                    <button id="btnBullets" class="toggle-btn" data-value="bullets">Bullets</button>
+                </div>
+            </div>
+        </div>
+
+        <button id="summarizeBtn" class="primary-btn">Generate Summary</button>
+
+        <div id="loading" class="hidden">
+            <div class="loader"></div>
+            <p>Processing with AI...</p>
+        </div>
+
+        <div id="outputSection" class="hidden">
+            <div class="output-header">
+                <h3>Summary</h3>
+                <button id="copyBtn" title="Copy to clipboard">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                </button>
+            </div>
+            <div id="summaryResult" class="summary-box" readonly></div>
+            <div id="errorArea" class="error-box hidden">
+                <p id="errorText"></p>
+                <button id="retryBtn">Retry</button>
+            </div>
+        </div>
+        
+        <footer id="footer">
+            <p>Backend: <span id="backendStatus">Checking...</span></p>
+        </footer>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

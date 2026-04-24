@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Datasets
+data/raw/
+data/processed/
+data/tokenized/
+
+# Models & Checkpoints
+# We usually only push the final fine-tuned adapter, not the entire base model
+# But if you want to push the adapter, we can. Let's ignore the large base model weights if any.
+models/google/
+models/checkpoints/*/checkpoint-*/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Extension
+extension/node_modules/
