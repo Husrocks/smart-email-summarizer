@@ -1,60 +1,92 @@
-# Smart Email Summarizer
+# 🎓 SmartSummarize — End-to-End LLM Email Project
 
-An AI-powered tool that converts long emails into concise summaries using Hugging Face Transformers. Includes a Python FastAPI backend and a Chrome Extension.
+**SmartSummarize** is a high-performance AI platform that transforms long emails into concise summaries. Unlike standard tools, this project uses a custom **fine-tuned Flan-T5-Base** model trained specifically on 18,000+ real-world emails.
 
-## Features
+---
 
-- **Abstractive Summarization**: Uses the `distilbart-cnn-12-6` model for high-quality, fast summaries.
-- **Adjustable Length**: Choose between Short, Medium, and Long summaries.
-- **Multiple Formats**: Output as structured bullet points or cohesive paragraphs.
-- **Language Detection**: Automatically detects the input language.
-- **Chrome Extension**: Right-click context menu and popup interface for quick access.
-- **Copy to Clipboard**: One-click copying of summaries.
+## 🚀 Key Features
 
-## 🛠 Setup Instructions
+- **Fine-tuned LLM**: Custom weights trained on the AESLC email dataset using LoRA.
+- **Gmail Integration**: Automatically reads and summarizes open emails in Gmail.
+- **Web Dashboard**: A premium, dark-themed dashboard for direct use.
+- **Chrome Extension**: Quick-access tool with right-click "Summarize This" support.
+- **Dual Mode**: Choose between Paragraph or Bullet Point summaries.
+- **Fast Inference**: Optimized to run on local CPUs (no GPU needed for use).
 
-### 1. Backend Setup
+---
 
-1.  **Navigate to the backend directory**:
-    ```bash
-    cd backend
-    ```
-2.  **Create a virtual environment (optional but recommended)**:
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
-    ```
-3.  **Install dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-4.  **Run the server**:
-    ```bash
-    python main.py
-    ```
-    The backend will run at `http://127.0.0.1:8000`. The first request will trigger the model download (~400MB).
+## 🛠️ Installation & Setup
 
-### 2. Extension Installation
+### 1. Prerequisites
+- Python 3.9 or higher
+- Google Chrome Browser
 
-1.  Open Chrome and navigate to `chrome://extensions/`.
-2.  Enable **Developer mode** (toggle in the top right).
-3.  Click **Load unpacked**.
-4.  Select the `extension` folder from this project directory.
+### 2. Backend Setup (The AI Engine)
+1. Clone this repository and navigate to the project root.
+2. Install the required libraries:
+   ```bash
+   pip install -r backend/requirements.txt
+   ```
+3. Start the backend server:
+   ```bash
+   python backend/main.py
+   ```
+   *Note: The first time you run this, it will download the base Flan-T5 model (~900MB). It will then load your custom fine-tuned weights.*
 
-## 🚀 Usage
+### 3. Chrome Extension Setup
+1. Open Chrome and go to `chrome://extensions/`.
+2. Turn on **Developer mode** (top right).
+3. Click **Load unpacked**.
+4. Select the `extension` folder from this project directory.
+5. **Important:** Click the extension icon in your toolbar to ensure it's connected to the backend.
 
-1.  **Direct Paste**: Click the extension icon in your toolbar, paste the email text, and click "Generate Summary".
-2.  **Context Menu**: Highlight any text on a webpage, right-click, and select **"Summarize This"**. The extension popup will open with the text pre-filled.
-3.  **Customization**: Use the slider to adjust length and the toggle buttons to switch between paragraph and bullet formats.
+### 4. Web Dashboard Setup
+1. Navigate to the `frontend` folder.
+2. Open `index.html` in any web browser.
+3. Make sure your backend is running, then start summarizing!
+
+---
+
+## 📖 How to Use
+
+### 📧 Using in Gmail
+1. Open any email in your Gmail tab.
+2. Click the **SmartSummarize** extension icon in your Chrome toolbar.
+3. The extension will automatically grab the email text and generate a summary!
+
+### 🖱️ Right-Click Feature
+1. Highlight any text on any webpage.
+2. Right-click and select **"Summarize This"**.
+3. The extension popup will open with your summary ready.
+
+### 💻 Using the Web App
+1. Open `frontend/index.html`.
+2. Paste any text into the box, choose your length (Short/Medium/Long), and hit **Generate**.
+
+---
+
+## 🧠 Model Technical Details
+- **Base Model**: `google/flan-t5-base`
+- **Training Technique**: LoRA (Low-Rank Adaptation)
+- **Parameters Trained**: 1.7 Million (0.7% of total)
+- **Dataset**: AESLC (Annotated Enron Subject Line Corpus) - 18,000 samples.
+- **Inference**: CPU-optimized direct generation.
+
+---
 
 ## 📁 Project Structure
+- `backend/`: FastAPI server and inference logic.
+- `extension/`: Chrome Extension (MV3) with Gmail auto-detection.
+- `frontend/`: Premium web dashboard.
+- `training/`: Training scripts used to fine-tune the model.
+- `scripts/`: Data collection and preprocessing pipeline.
+- `models/`: Fine-tuned LoRA weights and checkpoints.
 
-- `backend/`: FastAPI application and AI logic.
-- `extension/`: Chrome Extension manifest, UI, and background scripts.
-- `create_placeholders.py`: Utility script to generate extension icons.
+---
 
-## 📝 Technical Notes
+## 🤝 Contributing
+Feel free to fork this project and submit pull requests for any features or bug fixes.
 
-- **Model**: `sshleifer/distilbart-cnn-12-6` (Optimized for speed/quality).
-- **Backend**: FastAPI with CORS enabled for extension communication.
-- **Memory**: The model is loaded on-demand. Subsequent requests are faster as the model stays in memory for the session duration.
+---
+
+**Developed with ❤️ for Advanced AI Research.**
