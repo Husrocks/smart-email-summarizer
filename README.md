@@ -34,6 +34,15 @@
    *Note: The first time you run this, it will download the base Flan-T5 model (~900MB). It will then load your custom fine-tuned weights.*
 
 ### 3. Chrome Extension Setup
+
+**Option A: Pre-packaged (easiest)**
+1. [Download `smart-email-summarizer-extension.zip`](./smart-email-summarizer-extension.zip) from this repository.
+2. Extract the ZIP file to a folder.
+3. Open Chrome and go to `chrome://extensions/`.
+4. Turn on **Developer mode** (top right).
+5. Click **Load unpacked** and select the extracted folder.
+
+**Option B: From Source**
 1. Open Chrome and go to `chrome://extensions/`.
 2. Turn on **Developer mode** (top right).
 3. Click **Load unpacked**.

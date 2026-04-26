@@ -26,3 +26,8 @@ Thumbs.db
 
 # Extension
 extension/node_modules/
+
+# Deployment
+smart-email-summarizer/
+hf_deploy/
+*.zip
