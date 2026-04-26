@@ -118,9 +118,9 @@ async def summarize(request: SummarizeRequest):
         # Load model on first request
         load_model()
 
-        # Truncate input to 800 words
+        # Enhanced prompt for Flan-T5
         truncated = " ".join(request.text.split()[:800])
-        prompt    = "summarize: " + truncated
+        prompt    = f"Summarize the following email clearly and professionally:\n\n{truncated}"
 
         # Tokenize and generate
         import torch
@@ -132,6 +132,9 @@ async def summarize(request: SummarizeRequest):
                 min_new_tokens=min_len,
                 do_sample=False,
                 num_beams=4,
+                length_penalty=1.0,
+                no_repeat_ngram_size=3,
+                early_stopping=True,
             )
         summary_text = _tokenizer.decode(outputs[0], skip_special_tokens=True)
 
