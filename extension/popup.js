@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const retryBtn      = document.getElementById('retryBtn');
 
     let currentFormat = 'paragraph';
-    const API_URL = 'http://127.0.0.1:8000';
+    const API_URL = 'https://jimmy21ki09-smart-email-summarizer.hf.space';
 
     // ── Backend health check ─────────────────────────────────────────
     async function checkBackend() {
